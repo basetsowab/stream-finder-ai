@@ -1,0 +1,16 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.streamfinder.ai'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.streamfinder.ai'
+        minSdk 22
+        targetSdk 28
+        versionCode 1
+        versionName '1.0'
+        def apiKey = (project.findProperty('TMDB_API_KEY') ?: System.getenv('TMDB_API_KEY') ?: '').toString()
+        buildConfigField 'String', 'TMDB_API_KEY', '"' + apiKey.replace('\\', '\\\\').replace('"', '\\"') + '"'
+    }
+    buildFeatures { buildConfig true }
+}
